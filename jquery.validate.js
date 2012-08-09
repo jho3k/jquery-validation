@@ -208,6 +208,8 @@ $.extend($.validator, {
 		messages: {},
 		groups: {},
 		rules: {},
+		classAttr: "class",
+		classRulesSeparator: " ",
 		errorClass: "error",
 		validClass: "valid",
 		errorElement: "label",
@@ -830,9 +832,9 @@ $.extend($.validator, {
 
 	classRules: function(element) {
 		var rules = {};
-		var classes = $(element).attr('class');
+		var classes = $(element).attr(this.settings.classAttr);
 		if ( classes ) {
-			$.each(classes.split(' '), function() {
+			$.each(classes.split(this.settings.classRulesSeparator), function() {
 				if (this in $.validator.classRuleSettings) {
 					$.extend(rules, $.validator.classRuleSettings[this]);
 				}
